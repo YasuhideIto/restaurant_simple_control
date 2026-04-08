@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+
+body {
+           font-family: 'Segoe UI', sans-serif;
+           background-color: #f5f5f5;
+           margin: 0;
+           padding: 24px;
+           color: #333;
+       }
+
+       h1 {
+           color: #2e7d32;
+           border-left: 6px solid #2e7d32;
+           padding-left: 12px;
+       }
+
+       h2 {
+           color: #2e7d32;
+           margin-top: 40px;
+       }
+
+       table {
+           border-collapse: collapse;
+           width: 100%;
+           max-width: 700px;
+           background-color: #fff;
+           border-radius: 8px;
+           overflow: hidden;
+           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+       }
+
+       th {
+           background-color: #2e7d32;
+           color: #fff;
+           padding: 12px 16px;
+           text-align: left;
+       }
+
+       td {
+           padding: 10px 16px;
+           border-bottom: 1px solid #e0e0e0;
+       }
+
+       tr:last-child td {
+           border-bottom: none;
+       }
+
+       tr:hover {
+           background-color: #f1f8f1;
+       }
+
+       /* ステータスバッジ */
+       .status-未対応  { color: #888; }
+       .status-調理中  { color: #e65100; font-weight: bold; }
+       .status-完了    { color: #2e7d32; font-weight: bold; }
+
+       /* ボタン */
+       form { display: inline; }
+
+       .btn-cooking {
+           background-color: #e65100;
+           color: white;
+           border: none;
+           padding: 6px 12px;
+           border-radius: 4px;
+           cursor: pointer;
+           font-size: 13px;
+       }
+
+       .btn-cooking:hover { background-color: #bf360c; }
+
+       .btn-done {
+           background-color: #2e7d32;
+           color: white;
+           border: none;
+           padding: 6px 12px;
+           border-radius: 4px;
+           cursor: pointer;
+           font-size: 13px;
+           margin-left: 4px;
+       }
+
+       .btn-done:hover { background-color: #1b5e20; }
+
+       /* 注文追加フォーム */
+       .order-form {
+           background-color: #fff;
+           padding: 20px;
+           border-radius: 8px;
+           max-width: 400px;
+           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+       }
+
+       select {
+           padding: 8px;
+           font-size: 14px;
+           border: 1px solid #ccc;
+           border-radius: 4px;
+           width: 100%;
+           margin-bottom: 12px;
+       }
+
+       .btn-order {
+           background-color: #2e7d32;
+           color: white;
+           border: none;
+           padding: 10px 24px;
+           border-radius: 4px;
+           cursor: pointer;
+           font-size: 15px;
+       }
+
+       .btn-order:hover { background-color: #1b5e20; }
+
+       /* リンク */
+       a {
+           color: #2e7d32;
+           text-decoration: none;
+           font-size: 14px;
+       }
+
+       a:hover { text-decoration: underline; }

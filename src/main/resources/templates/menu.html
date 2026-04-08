@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/style.css}">
+    <title>メニュー一覧</title>
+	
+</head>
+<body>
+    <h1>メニュー一覧</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>メニュー名</th>
+            <th>価格</th>
+        </tr>
+        <tr th:each="item : ${menuItems}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+        </tr>
+    </table>
+	<h2>メニュー追加</h2>
+	<form action="/menu/add" method="post">
+		メニュー名 <input type="text" name="name"><br>
+		価格 <input type="text" name="price"><br>
+		<input type="submit" value="追加">
+	</form>
+</body>
+</html>

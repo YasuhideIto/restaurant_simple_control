@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/style.css}">
+    <title>注文一覧</title>
+</head>
+<body>
+    <h1>注文一覧</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>メニュー名</th>
+            <th>価格</th>
+            <th>ステータス</th>
+        </tr>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.menuName}"></td>
+            <td th:text="${order.price}"></td>
+            <td th:text="${order.status}"></td>
+			<td>
+				<form th:action="@{/order/status/{id}(id=${order.id})}" method="post">
+					<input type="hidden" name="status" value="調理中">
+					<input type="submit" value="調理中へ">
+				</form>	
+				<form th:action="@{/order/status/{id}(id=${order.id})}" method="post">
+					<input type="hidden" name="status" value="完了">
+					<input type="submit" value="完了へ">
+				</form>
+			</td>
+        </tr>
+    </table>
+
+    <h2>注文追加</h2>
+    <form action="/order/add" method="post">
+        <select name="menuName">
+            <option th:each="item : ${menuItems}"
+                    th:value="${item.name}"
+                    th:text="${item.name} + ' (' + ${item.price} + '円)'">
+            </option>
+        </select><br>
+        
+        <input type="submit" value="注文する">
+    </form>
+
+    <br><a href="/menu">メニュー管理へ</a>
+</body>
+</html>
