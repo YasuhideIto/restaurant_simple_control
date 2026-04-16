@@ -21,9 +21,11 @@
         </tr>
     </table>
 	<h2>メニュー追加</h2>
-	<form action="/menu/add" method="post">
-		メニュー名 <input type="text" name="name"><br>
-		価格 <input type="text" name="price"><br>
+	<form action="/menu/add" method="post" th:object="${menuItem}">
+		メニュー名 <input type="text" name="name" required><br>
+		<span th:if="${duplicate}" style="color:red;">そのメニュー名は既に存在します。</span>
+		価格 <input type="text" name="price" required><br>
+		<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color:red;"></span>
 		<input type="submit" value="追加">
 	</form>
 	<br><a href="/order">オーダー画面へ</a>

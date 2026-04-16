@@ -12,12 +12,14 @@
             <th>ID</th>
             <th>メニュー名</th>
             <th>価格</th>
+			<th>数量</th> <!-- 追加-->
             <th>ステータス</th>
         </tr>
         <tr th:each="order : ${orders}">
             <td th:text="${order.id}"></td>
             <td th:text="${order.menuName}"></td>
             <td th:text="${order.price}"></td>
+			<td th:text="${order.quantity}"></td>
             <td th:text="${order.status}"></td>
 			<td>
 				<form th:action="@{/order/status/{id}(id=${order.id})}" method="post">
@@ -40,6 +42,11 @@
                     th:text="${item.name} + ' (' + ${item.price} + '円)'">
             </option>
         </select><br>
+		
+		<!--ここに数量機能を追加-->
+		<label>数量</label>
+		<input type="number" name="quantity" value="1" min="1" required><br>
+	
         
         <input type="submit" value="注文する">
     </form>

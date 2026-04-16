@@ -38,7 +38,7 @@ public class OrderController {
     // 注文追加
     @Transactional// ← この１行がトランザクション処理のアノテーション
     @PostMapping("/order/add")
-    public String addOrder(@RequestParam String menuName, Model model) {
+    public String addOrder(@RequestParam String menuName, @RequestParam int quantity, Model model) {
         MenuItem menuItem = menuItemRepository.findAll()
             .stream()
             .filter(item -> item.getName().equals(menuName))
@@ -50,6 +50,7 @@ public class OrderController {
             order.setMenuName(menuName);
             order.setPrice(menuItem.getPrice());
             order.setStatus("未対応");
+            order.setQuantity(quantity);// ←数量機能追加
             orderRepository.save(order);
         }
         return "redirect:/order";

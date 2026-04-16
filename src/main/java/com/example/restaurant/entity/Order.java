@@ -17,6 +17,19 @@ public class Order {
     private String menuName;
     private int price;
     private String status; // 未対応 / 調理中 / 完了
+    //Order.java に追加
+    private int quantity;
+    
+    // getter / setter も追加
+    public int getQuantity() {
+    	return quantity;
+    }
+    
+    public void setQuantity(int quantity) {
+    	this.quantity = quantity;
+    }
+    
+    
 
     // ゲッター・セッター
     public Long getId() { return id; }
