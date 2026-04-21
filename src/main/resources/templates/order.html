@@ -9,18 +9,20 @@
     <h1>注文一覧</h1>
     <table border="1">
         <tr>
-            <th>ID</th>
+            <th>番号</th>
             <th>メニュー名</th>
             <th>価格</th>
 			<th>数量</th> <!-- 追加-->
             <th>ステータス</th>
         </tr>
-        <tr th:each="order : ${orders}">
-            <td th:text="${order.id}"></td>
+        <tr th:each="order, iterStat : ${orders}">
+            <td th:text="${iterStat.count}"></td>
             <td th:text="${order.menuName}"></td>
             <td th:text="${order.price}"></td>
 			<td th:text="${order.quantity}"></td>
-            <td th:text="${order.status}"></td>
+            <td th:text="${order.status}"
+				 th:style="${order.status == '調理中'} ? 'background-color: pink;' : (${order.status == '完了'} ? 'background-color: lightgreen;' : '')"> 
+			</td>
 			<td>
 				<form th:action="@{/order/status/{id}(id=${order.id})}" method="post">
 					<input type="hidden" name="status" value="調理中">
@@ -50,7 +52,10 @@
         
         <input type="submit" value="注文する">
     </form>
-
+	<form action="/order/deleteAll" method="post" onsubmit="return confirm('注文一覧をすべて削除してよろしいですか？')">
+		<input type="submit" value="一括削除">
+	</form>
+	
     <br><a href="/menu">メニュー管理へ</a>
 </body>
 </html>

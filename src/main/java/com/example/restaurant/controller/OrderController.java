@@ -56,6 +56,15 @@ public class OrderController {
         return "redirect:/order";
     }
     
+    // 全件削除機能
+    @Transactional
+    @PostMapping("/order/deleteAll")
+    
+    public synchronized String deleteAll() {
+    	orderRepository.deleteAll();// deleteAll()がJPAのDELETE ~とおなじSQL文を書いてくれる
+    	return "redirect:/order";
+    }
+    
     //　ステータス管理
     @PostMapping("/order/status/{id}")
     public String updateStatus(@PathVariable Long id, @RequestParam String status) {
