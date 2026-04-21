@@ -4,7 +4,7 @@
 飲食店向けの注文管理アプリです。メニューの管理と注文のステータス管理ができます。
 
 ## 公開URL
-[[restaurantsimplecontrol-production.up.railway.app](https://restaurantsimplecontrol-production.up.railway.app/)](https://restaurantsimplecontrol-production.up.railway.app/)
+(https://restaurantsimplecontrol-production.up.railway.app/)](https://restaurantsimplecontrol-production.up.railway.app/)
 
 ## 使用技術
 - Java 21
