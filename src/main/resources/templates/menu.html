@@ -14,11 +14,20 @@
             <th>メニュー名</th>
             <th>価格</th>
         </tr>
-        <tr th:each="item : ${menuItems}">
-            <td th:text="${item.id}"></td>
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.price}"></td>
-        </tr>
+		<tr th:each="item : ${menuItems}">
+		    <td th:text="${item.id}"></td>
+		    <td th:text="${item.name}"></td>
+		    <td th:text="${item.price}"></td>
+		    <td>
+		        <form th:action="@{/menu/delete/{id}(id=${item.id})}" method="post"
+		              onsubmit="return confirm('削除してよろしいですか？')">
+		            <input type="submit" value="削除">
+		        </form>
+		    </td>
+			<td>
+				<a th:href="@{/menu/edit/{id}(id=${item.id})}">編集</a>
+			</td>
+		</tr>
     </table>
 	<h2>メニュー追加</h2>
 	<form action="/menu/add" method="post" th:object="${menuItem}">
@@ -28,6 +37,9 @@
 		<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color:red;"></span>
 		<input type="submit" value="追加">
 	</form>
+	
+	<h2>編集</h2>
+	
 	<br><a href="/order">オーダー画面へ</a>
 </body>
 </html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー編集</title>
+	<link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <h1>メニュー編集</h1>
+    <form th:action="@{/menu/edit/{id}(id=${menuItem.id})}" method="post" th:object="${menuItem}">
+        メニュー名 <input type="text" name="name" th:value="${menuItem.name}" required><br>
+        価格 <input type="text" name="price" th:value="${menuItem.price}" required><br>
+		<!-------------------------------------↑で現在の値をフォームにいれている-->
+        <input type="submit" value="更新する">
+    </form>
+    <a href="/menu">戻る</a>
+</body>
+</html>
