@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # ① Java (Spring Boot) の設定
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # データベースへの接続設定（dbサービスに繋ぐ）
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/restaurant_db ##これはSpring Bootがみるmariadbの接続設定
+      - SPRING_DATASOURCE_USERNAME=root 
+      - SPRING_DATASOURCE_PASSWORD=yass
+    depends_on:
+      - db
+
+  # ② データベース (MariaDB) の設定
+  db:
+    image: mariadb:11.4-noble
+    ports:
+      - "3307:3306" ##ローカルでも3306のDBをつかいたいから変更
+    environment:
+      - MARIADB_DATABASE=restaurant_db
+      - MARIADB_ROOT_PASSWORD=yass
+    volumes:
+      # データをパソコン内に保存して、コンテナを消しても消えないようにする設定
+      # （Windows/Linux共通で動くように相対パスにしています）
+      - ./db_data:/var/lib/mysql

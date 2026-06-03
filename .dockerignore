@@ -1,0 +1,3 @@
+# targetはゴミ箱フォルダだからignore
+db_data/
+target/
