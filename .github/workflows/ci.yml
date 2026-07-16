@@ -1,0 +1,23 @@
+name: TestAutoRun
+
+on: 
+  push:
+    branches:
+      - experiment
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: コードをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: JDKをセットアップ
+        uses: actions/setup-java@v4
+
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+        
+      - name: テスト実行
+        run: ./mvnw test
