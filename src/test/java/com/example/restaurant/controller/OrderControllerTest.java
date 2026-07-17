@@ -42,7 +42,7 @@ public class OrderControllerTest {
     
     @Test 
     void 注文一覧を全件取得(){
-        Order order1 = new Order();
+        Order order1 = new Order();// Entityのインポートもしてるからインスタンス化できる。
         order1.setMenuName("カレー");
         order1.setPrice(1000);
         order1.setStatus("未対応");
@@ -52,7 +52,7 @@ public class OrderControllerTest {
         menuItem1.setName("カレー");
         menuItem1.setPrice(1000);
         // 上のインスタンスをDB１レコードとして↓でいれる
-        List<Order> orderList = List.of(order1);
+        List<Order> orderList = List.of(order1);// 入ってるデータ("カレー",1000,"未対応",1)
         List<MenuItem> menuitemList = List.of(menuItem1);
 
         when(orderRepository.findAll()).thenReturn(orderList);
