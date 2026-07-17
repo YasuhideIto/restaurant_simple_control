@@ -1,0 +1,23 @@
+name: DeployToEc2
+
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: EC2にSSH接続してデプロイ
+        uses: appleboy/ssh-action@v1
+        with: 
+          host: ${{ secrets.RESTAURANT_EC2_HOST }}
+          username: ${{ secrets.RESTAURANT_EC2_USER }}
+          key: ${{ secrets.RESTAURANT_EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/restaurant_simple_control
+            git pull origin main
+            docker compose up --build -d
+
+      
