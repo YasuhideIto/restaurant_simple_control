@@ -47,7 +47,25 @@ Windows での開発からはじまり、ノートPC:8gb ram 512gb ssd(debian13+
 - 単体テスト（Mockito によるController層のテスト）
 
 ## ER図
-※ 後日追加予定
+
+``` mermaid
+erDiagram
+  MENU_ITEM ||--o{ ORDER : "referenced by"
+  MENU_ITEM {
+    bigint id PK
+    string name
+    int price
+  }
+  ORDER {
+    bigint id PK
+    bigint menu_item_id FK
+    string menuName
+    int price
+    int quantity
+    datetime orderedAt
+  }
+```
+
 
 ## 画面キャプチャ
 ※ 後日追加予定
@@ -59,6 +77,7 @@ Windows での開発からはじまり、ノートPC:8gb ram 512gb ssd(debian13+
 - **バリデーション二重チェック：** フロントのみだとブラウザの操作で回避できてしまうため、バックエンドでも `@Valid` で二重チェックしました。
 - **CI/CDによる自動化：** `main`ブランチへのマージをトリガーに、GitHub Actionsでテストの自動実行とEC2への自動デプロイを構築し、手動デプロイのミスを防ぐ仕組みを整えました。
 - **セキュリティ検証（ポートスキャン）：** `nmap`でEC2インスタンスの代表的な1000ポートをスキャンし、セキュリティグループで見落としていたポート8080（アプリの直接ポート）が外部に開放されていることを発見。インバウンドルールから除外し、Nginx経由のみのアクセスに制限しました。
+- **DB設計における正規化の工夫** :** 注文時点のスナップショットとして`menuName`と`price`を`Order`側にも保持する設計としています。** 
 
 ## 開発の経緯
 このプロジェクトは「低スペックなノートPCでもフルスタック開発ができる」ことを証明したくて取り組みました。
