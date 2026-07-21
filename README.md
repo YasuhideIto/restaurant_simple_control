@@ -115,4 +115,4 @@ Windows での開発からはじまり、ノートPC:8gb ram 512gb ssd(debian13+
 | IDE | VSCode / Eclipse |
 | ローカル DB | MariaDB（Linux）/ MySQL 8.0（Windows） |
 | コンテナ | Docker Engine（Linux）/ Docker Desktop（Windows） |
-| 本番環境 | AWS EC2（https://restaurant-order-app.com） |
+| 本番環境 | AWS EC2 https://restaurant-order-app.com | 
