@@ -41,18 +41,18 @@ public class OrderController {
     public String addOrder(@RequestParam String menuName, @RequestParam int quantity, Model model) {
         MenuItem menuItem = menuItemRepository.findAll()
             .stream()
-            .filter(item -> item.getName().equals(menuName))
+            .filter(item -> item.getName().equals(menuName))// よくわからん、再度理解必須
             .findFirst()
             .orElse(null);
 
-        if (menuItem != null) {
+        if (menuItem != null) {// menuItemの中身は（"カレー",1000,3個）とか
             Order order = new Order();
             order.setMenuName(menuName);
             order.setPrice(menuItem.getPrice());
             order.setStatus("未対応");
             order.setQuantity(quantity);// ←数量機能追加
             orderRepository.save(order);
-        }
+        }   
         return "redirect:/order";
     }
     
