@@ -10,7 +10,7 @@ services:
       # データベースへの接続設定（dbサービスに繋ぐ）
       - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/restaurant_db ##これはSpring Bootがみるmariadbの接続設定
       - SPRING_DATASOURCE_USERNAME=root 
-      - SPRING_DATASOURCE_PASSWORD=yass
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
 
@@ -21,7 +21,7 @@ services:
       - "3307:3306" ##ローカルでも3306のDBをつかいたいから変更
     environment:
       - MARIADB_DATABASE=restaurant_db
-      - MARIADB_ROOT_PASSWORD=yass
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       # データをパソコン内に保存して、コンテナを消しても消えないようにする設定
       # （Windows/Linux共通で動くように相対パスにしています）
